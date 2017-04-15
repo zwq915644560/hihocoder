@@ -1,3 +1,4 @@
+//just a simple sum.
 #include<iostream>
 #include<vector>
 using namespace std;
