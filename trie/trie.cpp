@@ -1,4 +1,5 @@
 #include<iostream>
+#include<fstream>
 #include<stdlib.h>
 #include<string>
 
@@ -10,19 +11,27 @@ typedef struct node
 	struct node *child[26]={nullptr};
 }Tnode;
 
-int main()
+int main(int argc,char *argv[])
 {
 	//build the Trie tree
+	ifstream input((string)argv[1]);
+	if(!input)
+	{
+		cout<<"open "<<argv[1]<<"fail."<<endl;
+	}
 	string word;
-	int n=0;
 	Tnode *root=(Tnode *)malloc(sizeof(Tnode));	
 	Tnode *p=root;
 	root->count=0;
 	root->flag=false;
-	cout<<"now build Trie first.Input words:"<<endl;
-	while(cin>>word)
+//	cout<<"now build Trie first.Input words:"<<endl;
+//	cout<<stoi("5")<<endl;
+	input>>word;
+	int n=stoi(word);
+	for(int i=0; i<n;++i)
 	{
-	
+		input>>word;
+
 		for(auto c : word)
 		{
 			if(p->child[c-97]==nullptr)
@@ -36,17 +45,16 @@ int main()
 		}
 		p->flag=true;
 		p=root;
-		++n;
 	}
-	cout<<n<<"words."<<endl;
 	//look up a string
-	cout<<"now you can look up:"<<endl;
-	string str;
+	//cout<<"now you can look up:"<<endl;
 	Tnode *k=root;
-	cin.clear();
-	while(cin>>str)
+	input>>word;
+	n=stoi(word);
+	for(int i=0;i<n;++i)
 	{
-		for(auto c : str)
+		input>>word;
+		for(auto c : word)
 		{		
 			if(p->child[c-97]==nullptr)
 			{
