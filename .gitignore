@@ -1,3 +1,6 @@
 #ignore the executable
-
 *.out
+#ignore .a
+*.a
+#ignore .o
+*.o
